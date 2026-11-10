@@ -108,3 +108,38 @@ function actualizarProducto(nombreBuscado, nuevoNombre) {
 actualizarProducto("café doble ristretto", "Latte Caramel Mochiatto");
 actualizarProducto("hamburguesa","Té de Hierbas");
 
+// Punto 5: Eliminación de ítems
+
+function eliminarUltimo() {
+    const eliminado = menuCafeteria.pop();
+    console.log(`Se eliminó: ${eliminado}`);
+    console.log(menuCafeteria);
+}
+
+eliminarUltimo();
+
+function eliminarPrimero() {
+    const eliminado = menuCafeteria.shift();
+    console.log(`Se eliminó: ${eliminado}`);
+    console.log(menuCafeteria);
+}
+
+eliminarPrimero();
+
+function eliminarPorNombre(nombreBuscado) {
+    const indice = menuCafeteria.findIndex(
+        (product) => product.toLowerCase() === nombreBuscado.toLowerCase()
+    );
+
+    if (indice === -1) {
+        console.log(`No se encontró el producto ${nombreBuscado} en el menú.`);
+        return;
+    }
+
+    const eliminado = menuCafeteria.splice(indice, 1);
+    console.log(`Se eliminó ${eliminado[0]} del menú.`);
+    console.log(menuCafeteria);
+}
+
+eliminarPorNombre("jugo natural naranja exprimido");
+eliminarPorNombre("hamburguesa");
