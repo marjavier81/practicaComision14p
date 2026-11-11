@@ -143,3 +143,32 @@ function eliminarPorNombre(nombreBuscado) {
 
 eliminarPorNombre("jugo natural naranja exprimido");
 eliminarPorNombre("hamburguesa");
+
+//Punto 6: Buscador de Productos y Filtrado
+
+function buscarPrimerMatch(termino) {
+    const encontrado = menuCafeteria.find((product) => product.toLowerCase().includes(termino.toLowerCase()));
+    console.log(encontrado);
+    if (encontrado) {
+        console.log("El producto buscado fué encontrado dentro de la lista.");
+    } else {
+        console.log("El producto no está dentro de la lista.");
+    }
+}
+
+buscarPrimerMatch("moch");
+
+
+const normalizar = (texto) =>
+    texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+function filtrarPorCategoria(categoria) {
+    return menuCafeteria.filter(
+        (product) => normalizar(product).includes(normalizar(categoria))
+    );
+}
+
+console.log(filtrarPorCategoria('cafe'));
+console.log(filtrarPorCategoria('TARTA'));
+console.log(filtrarPorCategoria('muffin'));
+
