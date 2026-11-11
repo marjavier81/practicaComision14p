@@ -172,3 +172,78 @@ console.log(filtrarPorCategoria('cafe'));
 console.log(filtrarPorCategoria('TARTA'));
 console.log(filtrarPorCategoria('muffin'));
 
+// Punto 7: Ordenamiento de la Carta
+
+function ordenarCarta(modo) {
+    const copia = [...menuCafeteria];
+
+    copia.sort((a, b) => a.localeCompare(b)); // A → Z
+
+    if (modo === 'desc') {
+        copia.reverse(); // Z → A
+    }
+
+    return copia;
+}
+
+console.log(ordenarCarta('asc'));  
+console.log(ordenarCarta('desc')); 
+
+// Punto 8: Resumen e Integración de Menús Especiales
+
+function copiaSeguridad() {
+    const backup = menuCafeteria.slice();
+    return Object.freeze(backup);
+}
+
+console.log(copiaSeguridad());
+
+
+const menuTemporada = [
+    "Smoothie Menta y Limón",
+    "Frappé Caramelo Crocante",
+    "Waffle con Dulce de Leche"
+];
+
+function concatenar() {
+    const nuevoMenu = menuCafeteria.concat(menuTemporada);
+    console.log(nuevoMenu);
+    return nuevoMenu;
+}
+
+concatenar();
+
+const menuCompleto = concatenar();
+
+function resumenMenu(menu) {
+    const resumen = menu.reduce((acc, prod, i) => {
+        return i === 0 ? prod : acc + ', ' + prod;
+    }, '');
+
+    console.log(resumen);
+    return resumen;
+}
+
+resumenMenu(menuCompleto);
+
+// Punto 9: Sección de Investigación
+
+function existeProducto(texto) {
+    return menuCompleto.some((prod) =>
+        prod.toLowerCase().includes(texto.toLowerCase())
+    );
+}
+
+console.log(existeProducto('Artesanal'));
+
+function validarLongitudNombres(menu) {
+    const todosMayoresA4 = menu.every((prod) => prod.length > 4);
+
+    console.log(todosMayoresA4);
+    return todosMayoresA4;
+}
+
+validarLongitudNombres(menuCompleto);
+
+// TP INTEGRADOR FINALIZADO!!!
+

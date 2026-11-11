@@ -1,42 +1,172 @@
-Trabajo Práctico Integrador: CRUD de Menú de Cafetería
+# ☕ CRUD de Menú de Cafetería
 
-Gestión e Iteración de Arrays de Strings sin Métodos de Objetos
+Aplicación de consola en **JavaScript (ES6+)** para gestionar el menú de una cafetería especializada. El proyecto implementa las operaciones CRUD y otras utilidades de consulta, ordenamiento y transformación, usando exclusivamente **métodos de arrays**.
 
-1. Objetivo del Proyecto
+> Trabajo Práctico Integrador · Gestión e iteración de arrays de strings.
 
-El objetivo principal de este trabajo integrador es afianzar el dominio práctico de arreglos (arrays) en JavaScript o TypeScript. Construirás una aplicación orientada a consola para gestionar el menú y stock de productos de una **Cafetería Especializada**, implementando las operaciones esenciales de un CRUD (Create, Read, Update, Delete), funciones callback, filtrados, transformaciones y ordenamiento. 📌 Reglas Estrictas del Proyecto RESTRICCIÓN CLAVE DEL EJERCICIO: • NO se permite el uso de Objetos ({}). • Toda la estructura de datos del menú debe mantenerse únicamente mediante un array unidimensional de cadenas de texto (string[]). • Puedes resolver el desafío utilizando JavaScript estándar (ES6+) o TypeScript.
+---
 
-2. Array de Referencia (Menú de Cafetería)
+## 📋 Tabla de contenidos
 
-Deberás inicializar la aplicación utilizando exactamente el siguiente arreglo base de productos de cafetería. Copia e integra este array en tu archivo principal de código:
-https://gist.github.com/pmarino2013/904a9f665d9e2193f03e9d65643b6120
+- [Objetivo](#-objetivo)
+- [Restricción clave](#-restricción-clave)
+- [Tecnologías](#-tecnologías)
+- [Instalación y ejecución](#-instalación-y-ejecución)
+- [Estructura de datos](#-estructura-de-datos)
+- [Funcionalidades](#-funcionalidades)
+- [Métodos de array utilizados](#-métodos-de-array-utilizados)
+- [Ejemplos de uso](#-ejemplos-de-uso)
+- [Autor](#-autor)
 
-3. Consignas y Puntos a Resolver
+---
 
-► Punto 1: Visualización del Menú (Read / forEach)
-Crea una función llamada `mostrarMenu()` que recorra el array utilizando `.forEach()` e imprima en consola cada producto numerado según su índice (ejemplo: `1 - Café Espresso Clásico`).
+## 🎯 Objetivo
 
-► Punto 2: Códigos de Menú y Precios Estimados (map)
-Implementa una función `generarCodigosMenu()` que utilice `.map()` para devolver un nuevo array donde cada ítem posea un código único de producto calculado a partir de un identificador numérico o timestamp más su índice (ejemplo: `CAF-101 - Café Cappuccino Italiano`). Muestra en consola la nueva lista.
+Afianzar el dominio práctico de los arrays en JavaScript mediante una aplicación que permite:
 
-► Punto 3: Incorporación de Nuevos Productos (Create / push, unshift, splice)
-Desarrolla las siguientes funciones de alta: a) `agregarAlFinal(item)` utilizando `.push()`. b) `agregarAlInicio(item)` utilizando `.unshift()`. c) `insertarEnPosicion(indice, item)` utilizando únicamente `.splice()`.
+- Visualizar el menú y generar códigos de producto.
+- Agregar, actualizar y eliminar productos.
+- Buscar y filtrar productos por término o categoría.
+- Ordenar la carta, crear copias de respaldo y fusionar menús especiales.
+- Validar el contenido del menú con métodos de orden superior.
 
-► Punto 4: Actualización de Elemento del Menú (Update / findIndex & splice)
-Implementa la función `actualizarProducto(nombreBuscado, nuevoNombre)` que busque la posición exacta del ítem con `.findIndex()` (sin distinguir mayúsculas ni minúsculas) y reemplace su valor mediante `.splice()`. Muestra un mensaje adecuado si el ítem no fue encontrado.
+## 🚫 Restricción clave
 
-► Punto 5: Eliminación de Ítems (Delete / pop, shift & splice)
-Crea las siguientes funciones de baja de productos: a) `eliminarUltimo()` con `.pop()`. b) `eliminarPrimero()` con `.shift()`. c) `eliminarPorNombre(nombreBuscado)` utilizando `.findIndex()` y `.splice()` para quitar exactamente 1 elemento.
+**No se utilizan objetos (`{}`) para modelar los datos.** Todo el menú se mantiene en un único array unidimensional de strings (`string[]`).
 
-► Punto 6: Buscador de Productos y Filtrado (find & filter)
-Desarrolla las utilidades de consulta: a) `buscarPrimerMatch(termino)` usando `.find()` para obtener la primera coincidencia que contenga la palabra buscada. b) `filtrarPorCategoria(categoria)` usando `.filter()` para obtener un subconjunto de productos (por ejemplo: 'Café', 'Té', 'Tarta', 'Croissant', 'Muffin') ignorando diferencias de mayúsculas/minúsculas.
+## 🛠️ Tecnologías
 
-► Punto 7: Ordenamiento de la Carta (sort & reverse)
-Implementa la función `ordenarCarta(modo)` para ordenar el array de menú: a) En orden alfabético de A a Z mediante `.sort()`. b) En orden inverso de Z a A combinando `.sort()` y `.reverse()`. Muestra por consola la lista en cada ordenamiento.
+- JavaScript estándar (ES6+)
+- [Node.js](https://nodejs.org/) para ejecutar el código desde la consola
 
-► Punto 8: Resumen e Integración de Menús Especiales (slice, concat, reduce)
-Resuelve las siguientes operaciones de unificación y copia: a) Genera una copia de seguridad inmutable del array de menú con `.slice()`. b) Define un nuevo array `menuTemporada = ["Smoothie Menta y Limón", "Frappé Caramelo Crocante", "Waffle con Dulce de Leche"]` y únelo al menú principal con `.concat()`. c) Genera un resumen en un único string de texto continuo formateado que contenga todos los nombres del menú separados por comas o saltos de línea utilizando `.reduce()`.
+## 🚀 Instalación y ejecución
 
-► Punto 9: Sección de Investigación (some & every)
-Investiga y aplica en código los métodos de orden superior `.some()` y `.every()`: a) Verifica con `.some()` si en el menú existe al menos un producto que contenga la palabra 'Artesanal'. b) Verifica con `.every()` si todos los nombres de productos del menú poseen más de 4 caracteres.
-Operación CRUD Métodos de Array a Utilizar Resultado Esperado Create (Crear) push(), unshift(), splice() Modificación directa del array insertando elementos en distintos puntos. Read (Leer / Buscar) forEach(), map(), find(), filter() Recorrido numerado del menú, array de códigos, búsqueda única y por categoría. Update (Actualizar) findIndex(), splice() Reemplazo de un nombre de producto en su posición exacta dentro del array. Delete (Eliminar) pop(), shift(), splice() Eliminación del primer, último o de un ítem específico según término buscado. Utilidades / Extras sort(), reverse(), reduce(), slice(), concat(), some(), every() Ordenamiento A-Z/Z-A, copias de respaldo, fusión de carta de temporada y validaciones.
+```bash
+# 1. Clonar el repositorio
+git clone <https://github.com/marjavier81/practicaComision14p/tree/main/javascript-crud-cafeteria>
+
+# 2. Entrar a la carpeta del proyecto
+cd <javascript-crud-cafeteria>
+
+# 3. Ejecutar el archivo principal
+node app.js
+```
+
+## 🗂️ Estructura de datos
+
+El menú base es un array de 30 productos:
+
+```javascript
+const menuCafeteria = [
+  "Café Espresso Clásico",
+  "Café Doble Ristretto",
+  // ...
+  "Jugo Licuado Frutilla y Banana"
+];
+```
+
+Además, se define un menú de temporada que se fusiona con el principal:
+
+```javascript
+const menuTemporada = [
+  "Smoothie Menta y Limón",
+  "Frappé Caramelo Crocante",
+  "Waffle con Dulce de Leche"
+];
+```
+
+## ✨ Funcionalidades
+
+### 1. Visualización del menú (Read)
+
+| Función | Método | Descripción |
+|---------|--------|-------------|
+| `mostrarMenu()` | `forEach` | Imprime cada producto numerado según su índice. |
+| `generarCodigosMenu()` | `map` | Devuelve un nuevo array con un código único por producto (ej.: `CAF-101 - Café Cappuccino Italiano`). |
+
+### 2. Alta de productos (Create)
+
+| Función | Método | Descripción |
+|---------|--------|-------------|
+| `agregarAlFinal(item)` | `push` | Agrega un producto al final del menú. |
+| `agregarAlInicio(item)` | `unshift` | Agrega un producto al inicio del menú. |
+| `insertarEnPosicion(indice, item)` | `splice` | Inserta un producto en una posición específica. |
+
+### 3. Actualización de productos (Update)
+
+| Función | Método | Descripción |
+|---------|--------|-------------|
+| `actualizarProducto(nombreBuscado, nuevoNombre)` | `findIndex` + `splice` | Busca el producto sin distinguir mayúsculas/minúsculas y reemplaza su nombre. Informa si no se encontró. |
+
+### 4. Baja de productos (Delete)
+
+| Función | Método | Descripción |
+|---------|--------|-------------|
+| `eliminarUltimo()` | `pop` | Elimina el último producto. |
+| `eliminarPrimero()` | `shift` | Elimina el primer producto. |
+| `eliminarPorNombre(nombreBuscado)` | `findIndex` + `splice` | Elimina exactamente un producto según su nombre. |
+
+### 5. Búsqueda y filtrado
+
+| Función | Método | Descripción |
+|---------|--------|-------------|
+| `buscarPrimerMatch(termino)` | `find` | Devuelve la primera coincidencia que contenga el término buscado. |
+| `filtrarPorCategoria(categoria)` | `filter` | Devuelve los productos de una categoría (`Café`, `Té`, `Tarta`, `Croissant`, `Muffin`), ignorando mayúsculas/minúsculas. |
+
+### 6. Ordenamiento
+
+| Función | Método | Descripción |
+|---------|--------|-------------|
+| `ordenarCarta(modo)` | `sort` / `sort` + `reverse` | Ordena el menú de A a Z o de Z a A y muestra el resultado por consola. |
+
+### 7. Resumen e integración de menús
+
+| Operación | Método | Descripción |
+|-----------|--------|-------------|
+| Copia de seguridad | `slice` | Genera una copia independiente del menú. |
+| Unión con el menú de temporada | `concat` | Combina `menuCafeteria` y `menuTemporada` en un nuevo array. |
+| Resumen en texto | `reduce` | Genera un único string con todos los productos separados por comas o saltos de línea. |
+
+### 8. Validaciones
+
+| Operación | Método | Descripción |
+|-----------|--------|-------------|
+| Existe algún producto "Artesanal" | `some` | Devuelve `true` si al menos un producto contiene la palabra buscada. |
+| Todos los nombres tienen más de 4 caracteres | `every` | Devuelve `true` si todos los productos cumplen la condición. |
+
+## 🧰 Métodos de array utilizados
+
+| Operación | Métodos |
+|-----------|---------|
+| **Create** | `push()`, `unshift()`, `splice()` |
+| **Read** | `forEach()`, `map()`, `find()`, `filter()` |
+| **Update** | `findIndex()`, `splice()` |
+| **Delete** | `pop()`, `shift()`, `splice()` |
+| **Utilidades** | `sort()`, `reverse()`, `reduce()`, `slice()`, `concat()`, `some()`, `every()` |
+
+## 💡 Ejemplos de uso
+
+```javascript
+mostrarMenu();
+// 1 - Café Espresso Clásico
+// 2 - Café Doble Ristretto
+// ...
+
+filtrarPorCategoria('tarta');
+// ['Tarta Carrot Cake Nuez', 'Tarta Cheesecake de Frutos Rojos', 'Tarta Lemon Pie Merengue']
+
+ordenarCarta('asc');   // A → Z
+ordenarCarta('desc');  // Z → A
+
+const menuCompleto = menuCafeteria.concat(menuTemporada);
+console.log(menuCompleto.length); // 33
+```
+
+## 👤 Autor
+
+**Martin Javier Veliz**
+[GitHub](https://github.com/marjavier81) · [LinkedIn](https://www.linkedin.com/in/martin-javier-veliz)
+
+---
+
+*Proyecto realizado con fines educativos como Trabajo Práctico Integrador.*
